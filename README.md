@@ -47,9 +47,9 @@ Each token is composed of a plaintext string (a word, a punctuation mark or a mu
 | **`p`** | Pronoun        | N/A                         | `nos\|p` (us)                 |
 | **`r`** | Adverb         | N/A                         | `bien\|r` (well)              |
 | **`s`** | Preposition    | N/A                         | `en\|s` (in)                  |
-| **`v`** | **Verb**       | **Explicit subject**        | `canta\|i` (sings, preceded or followed by its subject) |
-| **`w`** | **Verb**       | **Null subject** (personal) | `canta\|i` (sings, null subject) |
-| **`y`** | **Verb**       | **Impersonal**              | `llueve\|i` (it rains)        |
+| **`v`** | **Verb**       | **Explicit subject**        | `canta\|v` (sings, preceded or followed by its subject) |
+| **`w`** | **Verb**       | **Null subject** (personal) | `canta\|w` (sings, null subject) |
+| **`y`** | **Verb**       | **Impersonal**              | `llueve\|y` (it rains)        |
 | **`z`** | Numeral        | N/A                         | `100\|z` (100)                |
 
 ### Multi-word tokens
