@@ -2,16 +2,16 @@
 An adaptation of the AnCora annotated Spanish corpus tagged for null subject recognition.
 
 ## About the Corpus
-This corpus is composed of 16623 sentences based on the Spanish version of the [AnCora](https://clic.ub.edu/corpus/es/ancora) (see Taulé et al., LREC 2008), an annotated multi-level corpus. The `NullSubjAncoraCorpus` is intended as a specialized version of that corpus for null subject and impersonal verb recognition tasks.
+This corpus is composed of 16623 sentences based on the Spanish version of the [AnCora](https://clic.ub.edu/corpus/es/ancora) (see Taulé et al., LREC 2008), an annotated multi-level corpus. The _NullSubjAncoraCorpus_ is intended as a specialized version of that corpus for null subject and impersonal verb recognition tasks.
 
 The original AnCora corpus includes syntactic information which makes it possible to classify 94% of finite verbs into the following three scenarios:
 - verbs featuring an **explicit subject**, as in "_**Los niños** comen pan._" (The children eat bread).
 - **null subject** verbs as a result of pronoun dropping (which might be rewritten with an explicit subject), as in "_Comen pan_" (\[they\] eat bread).
 - null subject verbs due to the verb being semantically **impersonal** (where explicit subject marking is not allowed in Spanish), as in "_Está lloviendo._" (\[it\] is raining).
 
-The `NullSubjAncoraCorpus` extracts this information from the AnCora corpus and dissambiguates the remaining 6% of finite verbs (1323 verbs which were manually tagged).
+The `NullSubjAncoraCorpus` extracts this information from the AnCora corpus and dissambiguates the remaining 6% of finite verbs (1323 verbs which were manually tagged). The modified dataset excludes sentences which lacked finite verbs.
 
-The modified dataset excludes sentences which lacked finite verbs.
+The _NullSubjAncoraCorpus_ corpus was developed as part of a research on the usage of machine translation (MT) techniques applied to null subject and impersonal verb detection, as detailed in the paper _Null Subjects in Spanish as a Machine Translation Problem_ (Luis Chiruzzo and José Diego Suárez, 2023).
 
 ## Target audience
 This corpus is intended for the training and evaluation of Machine Learning (ML) tasks focused on null subject and impersonal verbs.
@@ -30,7 +30,7 @@ Statistics for the partition:
 ## Dataset format
 Each partition file is contains a number of sentences delimited by newline characters `\n` (please take notice that, depending on the OS, some text-processing utilities might convert newline sequences to `\r\n` instead).
 
-Each sentence within `NullSubjAncoraCorpus` contains a series of tokens (corresponding to lexical items or punctuation marks) including tags that indicate their part-of-speech (POS) category and, in the case of verbs, an indication of whether it is an non-finite form (**`i`**), a personal finite verb with an explicit subject (**`v`**), a personal finite verb with null subject (**`w`**) or a finite impersonal verb (**`y`**).
+Each sentence within _NullSubjAncoraCorpus_ contains a series of tokens (corresponding to lexical items or punctuation marks) including tags that indicate their part-of-speech (POS) category and, in the case of verbs, an indication of whether it is an non-finite form (**`i`**), a personal finite verb with an explicit subject (**`v`**), a personal finite verb with null subject (**`w`**) or a finite impersonal verb (**`y`**).
 
 Each token is composed of a plaintext string (a word, a punctuation mark or a multi-word sequence annotated as a single lexical item in AnCora), the vertical bar character **`|`** and a single character indicating the POS or verb type class as per the following table:
 
@@ -76,7 +76,23 @@ As in English, a Spanish sentence might include a single subject followed by a c
 - It could be posited that the explicit subject _el niño_ (the boy) applies to both verbs (_lee_, 'reads' and _escribe_, 'writes'). Under such an analysis, both verbs would be classified as bearing a explicit subject.
 - It could be considered that the explicit subject only applies to the first verb within the conjunction (_el niño lee_, 'the boy reads') while the other verb features a null subject (_y () escribe_, 'and \[he\] writes').
 
-The AnCora corpus consistently applies the second criterion, which the `NullSubjAncoraCorpus` inherits. As such, _El niño lee y escribe_ would be transcribed as `el|d niño|n lee|v y|c escribe|w`, tagging _escribe_ as an instance of null subject.
+The AnCora corpus consistently applies the second criterion, which the _NullSubjAncoraCorpus_ inherits. As such, _El niño lee y escribe_ would be transcribed as `el|d niño|n lee|v y|c escribe|w`, tagging _escribe_ as an instance of null subject.
+
+## Annotation procedure
+
+This corpus was constructed by extracting information from the existing [AnCora corpus](https://clic.ub.edu/corpus/es/ancora) that was relevant to the task at hand and then manually supplying subject categorization tags in cases where such information was insufficient for the proposed classification problem.
+
+The Spanish-language AnCora corpus is composed of nearly 17 000 sentences taken from journalistic texts totalling around 500 000 words. Each sentence is annoated for multiple syntactic and semantic features, including a phrase structure grammatical analysis, lemma and part of speech (POS) identification, annotations for certain syntactic and semantic roles and inflectional data for nouns and verbs among others.
+
+The first step in the constrction of the _NullSubjAncoraCorpus_ consisted in the extraction of lexemes along with POS tags. Verb inflection metadata allowed us to identify finite verbs (relevant for the task at hand) which would then be further classified as having an explicit subject (`v` tag), a null subject resulting from subject ellipsis (`w` tag) or presenting no subject due to appearing in an impersonal construction (`y` tag).
+
+It was identified that certain features found within the AnCora corpus reliably showed the category for a majority of finite verbs in the corpus. Such features include:
+
+- Typically, a noun phrase working as subject within a verb phrase will include the attribute `func='subj'` marking it as such. In those cases, the corresponding verb was automatically tagged as having a explicit subject (`v`).
+- Most null-subject non-impersonal verb phrases contain a special 'elliptic subject noun phrase' node. When such a node was identified, the corresponding verb was automatically tagged as null-subject (`w`).
+- Impersonal verb phrases conforming to a certain construction (_oraciones impersonales reflejas_) are annotated with the attribute `func='impers'`. In that such cases, the corresponding verb was automatically tagged as impersonal (`y`). This annotation in AnCora is not found for verbs appearing in other kinds of impersonal constructions.
+
+This procedure sufficed to classify a substantial majority of the finite verbs within the corpus, amounting to 94%. It was found, however, that the remaining 6% (comprising 1324 verbs within all corpus partitions) lacked any markings within AnCora that could reliably indicate their category. Furthermore, we observed that these 'unclassified' verbs could in fact correspond to any of the proposed categories. As a result, we found it necessary to annotate the category of these verbs manually, based on their context within the sentence.
 
 ## Acknowledgments
 This work is based on the existing [AnCora corpus](https://clic.ub.edu/corpus/es/ancora) (see Taulé et al., LREC 2008), all credit for the compilation and annotation of the original corpus goes to the corresponding authors.
