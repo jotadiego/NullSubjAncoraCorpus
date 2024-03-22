@@ -80,7 +80,7 @@ The AnCora corpus consistently applies the second criterion, which the _NullSubj
 
 ### A note on impersonal verbs
 
-This work employs a fairly broad  definition of impersonal verbs following the terminology set by the main Spanish language regulation body (Real Academia Española, RAE) in works such as _Nueva gramática básica de la lengua española_ (RAE, 2011). This covers both intrinsically impersonal verbs (such as meteorological verbs such as _llover', 'to rain') which occur almost exclusively in an impersonal usage as well as a range of other phenomena involving verbs which could also appear in personal usages, making this a highly contextual distinction.
+This work employs a fairly broad  definition of impersonal verbs following the terminology set by the main Spanish language regulation body (Real Academia Española, RAE) in works such as _Nueva gramática básica de la lengua española_ (RAE, 2011). This covers both intrinsically impersonal verbs (such as meteorological verbs such as _llover_, 'to rain') which occur almost exclusively in an impersonal usage as well as a range of other phenomena involving verbs which could also appear in personal usages, making this a highly contextual distinction.
 
 This includes existential clauses (“hay”, “hubo”, corresponding to English “there is”, “there were”, etc.), clauses specifying a temporal frame (“era sábado”, “hace tres años”, corrseponding to English “it was Saturday”, “(it was) three years ago”), and sentences referring to a generic, unspecified actor such as “se trabaja mejor en equipo” (“it’s better to work on teams”) or “llaman a la puerta” (“(someone) is calling at the door”), among others.
 
